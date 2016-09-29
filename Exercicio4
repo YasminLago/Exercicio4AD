@@ -1,0 +1,41 @@
+exercicio primitiveWriteUTF
+
+ Neste exercicio seguiremos tratando os fluxos binarios de datos pero abora tratandoos como soporte de tipos de dato primitivos e valores String
+
+DataOutputStream dispon dunha serie de  métodos  para que partindo  de fluxos binaros de datos  podamos escribir tipos primitivos de datos e valores String
+
+
+DataInputStream dispon dunha serie de  métodos  para que partindo  de fluxos binaros de datos  podamos ler tipos primitivos de datos e valores String  que previamente foron codificados nestes fluxos mediante DataOutputStream
+
+
+Dado que DatainputStream admite como parametro calquer clase herdada de InputStream , e BufferedInputStream cumpre este requisito,  o único que temos que facer para poder usar os metodos de DataInputStream e pasarlle como parmaetro un obxecto BufferedInputStream coma otraballado no exercicio anterior 
+
+
+Dado que DataOutputStream admite como parametro calquer clase herdada de OutputStream , e BufferedOutputStream cumpre este requisito o único que temos que facer para poder usar os metodos de DataOutputStream e pasarlle como parmaetro un obxecto BufferedOutputStream coma o traballado no exercicio anterior
+
+Propoñovos un exercicio que consistirá grabar unha mesma cadea  de texto duas veces usando o metodo writeUTF  nun ficheiro denominado text3.txt para posteriormente recuperalos.
+
+Ter en cota que writeUTF(String) escribe tipicamente 1 byte por caracter (pode escribir ata 3 dependendo do caracter ) e antepon a dita cadea 2 Bytes que conteñen a lonxitude en numero de bytes da cadea.
+
+(podemos cambiar calquera vogal da cadea por esa mesma vogal acentuada ou unha letra ñ e veremos que a lnxitude da cadea varia)
+
+cadea a grabar : "esta e unha cadea\n"
+
+
+
+o resultado da execucion debería ser o seguinte:
+
+
+writeUTF escribiu: Esta e unha cadea\n
+writeUTF escribiu: 20 bytes
+writeUTF escribiu: Esta e unha cadea\n
+writeUTF escribiu: 20 bytes
+bytes totais escritos = 40
+lemos a primeira cadea en UTF: Esta e unha cadea
+numero de bytes lidos: 20 bytes.
+bytes restantes por ler = 20
+lemos a segunda cadea:  Esta e unha cadea
+
+
+
+Podemos comprobar que se intentamos abrir a o ficheiro de texto  text3.txt co editor gedit non o permite. debemos usar nano , vi , emacs ou outro editor non grafico  e comprobaremos a forma en que foron grabadas as  cadeas.
