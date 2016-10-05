@@ -1,5 +1,7 @@
 package primitivewriteutf;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
@@ -12,31 +14,33 @@ import java.io.IOException;
  * @author oracle
  */
 public class PrimitiveWriteUTF {
+
     public static void main(String[] args) throws FileNotFoundException, IOException {
-       
-       String texto = "Esta e unha cadea\n";
+
+        String texto = "Esta e unha cadea\n";
+
+        DataInputStream text = new DataInputStream(new BufferedInputStream(new FileInputStream("text3.txt")));
+        DataOutputStream tex = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("text3.txt", true)));
+
+        for (int i = 1; i <= 2; i++) {
+            tex.writeUTF(texto);
+            System.out.println("WriteUTF escribiu: "+texto);
+            System.out.println("WriteUTF escribiu: " + (tex.size() / i) + " bytes");
+        }
+
+        System.out.println("Bytes totais escritos: " + tex.size());
+        tex.close();
+
+        int i = 0;
+        while (text.available() != 0) {
+            String cadea = text.readUTF();
+            System.out.println("Lemos a cadea: " + cadea);
+            int lido = cadea.length() + 2;
+            System.out.println("Número de bytes lidos: " + lido + " bytes");
+            System.out.println("Bytes restantes por ler: " + text.available() + " bytes");
+            i++;
+        }
+        text.close();
         
-       String directorio = "/home/oracle/NetBeansProjects/PrimitiveWriteUTF/text3.txt";
-      
-       DataInputStream text = new DataInputStream(new FileInputStream(directorio));
-       DataOutputStream tex = new DataOutputStream(new FileOutputStream(directorio));
-       
-       
-       System.out.println("WriteUTF escribiu: "+ texto);
-       tex.writeUTF(texto);
-       System.out.println("WriteUTF escribiu: "+ tex.size()+" bytes");
-       
-       System.out.println("WriteUTF escribiu: "+ texto);
-       System.out.println("WriteUTF escribiu: "+ tex.size()+" bytes");
-       tex.writeUTF(texto);
-       
-       
-       System.out.println("Bytes totais escritos = "+tex.size());
-       
-       System.out.println("Lemos a primeira cadea en UTF: "+ text.readUTF());
-       System.out.println("Número de bytes lidos: "+ text.available()+" bytes.");
-       System.out.println("Bytes restantes por ler: "+ text.available());
-       System.out.println("Lemos a segunda cadea: "+ text.readUTF());
-       
     }
 }
