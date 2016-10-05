@@ -1,6 +1,5 @@
 package primitivewriteutf;
 
-import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
@@ -22,23 +21,22 @@ public class PrimitiveWriteUTF {
        DataInputStream text = new DataInputStream(new FileInputStream(directorio));
        DataOutputStream tex = new DataOutputStream(new FileOutputStream(directorio));
        
+       
+       System.out.println("WriteUTF escribiu: "+ texto);
        tex.writeUTF(texto);
+       System.out.println("WriteUTF escribiu: "+ tex.size()+" bytes");
+       
+       System.out.println("WriteUTF escribiu: "+ texto);
+       System.out.println("WriteUTF escribiu: "+ tex.size()+" bytes");
        tex.writeUTF(texto);
        
        
-       System.out.println("WriteUTF escribiu: "+ text.readUTF());
-       System.out.println("WriteUTF escribiu: "+ text.readUTF());
-
-        
-        
+       System.out.println("Bytes totais escritos = "+tex.size());
        
-//        int i = text.read();
-//        int c;
-//        
-//        while(i != -1){
-//            
-//            System.out.println(i);
-//        }
-        
+       System.out.println("Lemos a primeira cadea en UTF: "+ text.readUTF());
+       System.out.println("Número de bytes lidos: "+ text.available()+" bytes.");
+       System.out.println("Bytes restantes por ler: "+ text.available());
+       System.out.println("Lemos a segunda cadea: "+ text.readUTF());
+       
     }
 }
